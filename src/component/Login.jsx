@@ -9,11 +9,11 @@ const Login = () => {
         <h1 style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Welcome to The Invincibles</h1>
         <Box border={1} borderColor="primary.main" borderRadius={5} padding={8} sx={{ backgroundColor: 'rgba(135, 206, 235)',color: '#000000'}}>   
         <h2>Login</h2>
-        <TextField variant='filled' label="Username" sx={{ width: '400px' }}></TextField>
+        <TextField variant='filled' label="Username" sx={{ width: '400px' }} required></TextField>
         <br/><br/>
-        <TextField variant='filled' type='password' label="Password" sx={{ width: '400px' }}></TextField>
+        <TextField variant='filled' type='password' label="Password" sx={{ width: '400px' }} required></TextField>
         <br/><br/>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap : 4}}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap : 5}}>
         <Button id="bt" variant='contained' color='success'>Submit</Button>
         <Button id="bt" variant='contained' color='warning'>Reset</Button>
         </div>
@@ -22,7 +22,7 @@ const Login = () => {
                   <Typography>Forgot password?</Typography>
         </div>
         <div style={{ textAlign: 'left' }}>
-                  <Typography>Don't have an account?<Link to="/Sign">Sign Up</Link></Typography>
+                  <Typography>Don't have an account?<Link to="/Signup">Sign Up</Link></Typography>
                   
         </div>
         </Box>
