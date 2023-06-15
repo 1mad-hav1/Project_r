@@ -10,22 +10,57 @@ const Signup = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const navigate = useNavigate();
-    
+    const [field1, setField1] = useState('');
+    const [field2, setField2] = useState('');
+    const [field3, setField3] = useState('');
+  const EmailChange = (e) => {
+    setField1(e.target.value);
+    setEmail(e.target.value);
+  };
+
+  const Pass1Change = (event) => {
+    setField2(event.target.value);
+    setPass(event.target.value);
+
+  };
+  const Pass2Change = (event1) => {
+    setField3(event1.target.value);
+    setCPass(event1.target.value);
+
+  };
+
+
     const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
-  const handleButtonClick = () => {
-    if (isChecked) {
-        alert('Thank you for signing up!');
-        navigate('/Sign');
-    
-    
-    } else {
-      alert('Please accept terms and conditions');
-    }
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
+    if (field1.trim() === '' || field2.trim() === '' || field3.trim() === '') {
+      alert('Please fill in all required fields.');
+    } 
+    else {
+        if (password.length < 8) {
+            alert('Password must be at least 8 characters long.');
+        }
+        else{
+             if (isChecked) {
+                if (password !== cpassword) {
+                     alert('Password and confirm password must match.');
+                 }
+                else{
+                    alert('Thank you for signing up!');
+                    navigate('/Sign');
+                }
+    
+            } 
+            else {
+                alert('Please accept terms and conditions');
+            }
+        }
+  };
+  }
       const handleOpenModal = () => {
         setModalOpen(true);
       };
@@ -46,15 +81,15 @@ const Signup = () => {
             <h2>Sign Up</h2>
             <div style={{ display: 'flex', gap: '65px' }}>
             <br/><p>Email id</p>
-            <TextField variant='filled' type='text' value={email} onChange={(e) => setEmail(e.target.value)}></TextField>
+            <TextField variant='filled' type='text' value={email} onChange={EmailChange}></TextField>
             </div>
             <div style={{ display: 'flex', gap: '60px' }}>
             <br/><br/><p>Password</p>
-            <TextField variant='filled' type='password' style={{ height: '30px' }} value={password} onChange={(e) => setPass(e.target.value)}></TextField>
+            <TextField variant='filled' type='password' style={{ height: '30px' }} value={password} onChange={Pass1Change} required></TextField>
             </div>
             <div style={{ display: 'flex', gap: '30px' }}>
             <br/><br/><br/><br/><p>Confirm Password</p>
-            <TextField variant='filled' type='password' style={{ height: '30px' }} value={cpassword} onChange={(e) => setCPass(e.target.value)}></TextField>
+            <TextField variant='filled' type='password' style={{ height: '30px' }} value={cpassword} onChange={Pass2Change} required></TextField>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' ,gap:'10px'}}>
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
@@ -70,7 +105,7 @@ const Signup = () => {
             </div>
             <br/> <br/>
             <div style={{ display: 'flex', justifyContent: 'center', gap : 2}}>  
-                <Button variant='contained' color='success' onClick={handleButtonClick} style={{ textDecoration: 'none', color: 'white', backgroundColor: 'success', border: 'none', outline: 'none', cursor: 'pointer'}}>Submit</Button>  
+                <Button variant='contained' color='success' onClick={handleSubmit} style={{ textDecoration: 'none', color: 'white', backgroundColor: 'success', border: 'none', outline: 'none', cursor: 'pointer'}}>Submit</Button>  
             </div>   
             </Box>
          </div>
